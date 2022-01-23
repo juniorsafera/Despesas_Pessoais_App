@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class FormTransacoes extends StatelessWidget {
-  const FormTransacoes({Key? key}) : super(key: key);
+  final void Function(String, double) onSubmit;
+  const FormTransacoes({Key? key, required this.onSubmit}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +30,9 @@ class FormTransacoes extends StatelessWidget {
                 FlatButton(
                     textColor: Colors.purple,
                     onPressed: () {
-                      // ignore: avoid_print
-                      print(cTitulo.text);
+                      final titulo = cTitulo.text;
+                      final valor = double.tryParse(cValor.text) ?? 0.00;
+                      onSubmit(titulo, valor);
                     },
                     child: const Text('Nova Transação')),
               ],

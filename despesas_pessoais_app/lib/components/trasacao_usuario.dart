@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:despesas_pessoais_app/components/form_transacoes.dart';
 import 'package:despesas_pessoais_app/components/lista_transicoes.dart';
 import 'package:despesas_pessoais_app/models/transacoes.dart';
@@ -44,12 +46,26 @@ class _TransacaoUsuarioState extends State<TransacaoUsuario> {
     ),
   ];
 
+  _adicionarTransacao(String titulo, double valor) {
+    final novaTransacao = ModeloTransacoes(
+        id: Random().nextDouble().toString(),
+        titulo: titulo,
+        valor: valor.toString(),
+        data: DateTime.now());
+
+    setState(() {
+      _transacoes.add(novaTransacao);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         ListaTransacoes(transacoes: _transacoes),
-        const FormTransacoes(),
+        FormTransacoes(
+          onSubmit: _adicionarTransacao,
+        ),
       ],
     );
   }
