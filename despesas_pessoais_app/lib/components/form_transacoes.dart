@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 
 class FormTransacoes extends StatelessWidget {
@@ -9,6 +11,17 @@ class FormTransacoes extends StatelessWidget {
     final TextEditingController cTitulo = TextEditingController();
     final TextEditingController cValor = TextEditingController();
 
+    _submitForm() {
+      final titulo = cTitulo.text;
+      final valor = double.tryParse(cValor.text) ?? 0.00;
+
+      if (titulo.isEmpty || valor <= 0) {
+        return;
+      }
+
+      onSubmit(titulo, valor);
+    }
+
     return Card(
       elevation: 5,
       child: Padding(
@@ -18,10 +31,14 @@ class FormTransacoes extends StatelessWidget {
           children: [
             TextField(
               controller: cTitulo,
+              onSubmitted: (_) => _submitForm(),
               decoration: const InputDecoration(labelText: 'Título'),
             ),
             TextField(
               controller: cValor,
+              onSubmitted: (_) => _submitForm(),
+              keyboardType:
+                  const TextInputType.numberWithOptions(decimal: true),
               decoration: const InputDecoration(labelText: 'Valor (R\$)'),
             ),
             Row(
@@ -29,11 +46,7 @@ class FormTransacoes extends StatelessWidget {
               children: [
                 FlatButton(
                     textColor: Colors.purple,
-                    onPressed: () {
-                      final titulo = cTitulo.text;
-                      final valor = double.tryParse(cValor.text) ?? 0.00;
-                      onSubmit(titulo, valor);
-                    },
+                    onPressed: _submitForm,
                     child: const Text('Nova Transação')),
               ],
             )

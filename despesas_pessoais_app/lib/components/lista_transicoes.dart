@@ -8,48 +8,51 @@ class ListaTransacoes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        ...transacoes.map((transacao) => Container(
-              width: double.infinity,
-              child: Card(
-                elevation: 5,
-                child: Row(
+    return Container(
+      color: Colors.amber[100],
+      height: 300,
+      child: ListView.builder(
+        itemCount: transacoes.length,
+        itemBuilder: (context, index) {
+          final transacao = transacoes[index];
+          return Card(
+            elevation: 5,
+            child: Row(
+              children: [
+                Container(
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                  child: Text(
+                    'R\$ ${transacao.valor}',
+                    style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.purple),
+                  ),
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 10),
-                      child: Text(
-                        'R\$ ${transacao.valor}',
-                        style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.purple),
+                    Text(
+                      transacao.titulo,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          transacao.titulo,
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text(
-                          DateFormat('d MMM y').format(transacao.data),
-                          style: const TextStyle(
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ],
-                    )
+                    Text(
+                      DateFormat('d MMM y').format(transacao.data),
+                      style: const TextStyle(
+                        color: Colors.grey,
+                      ),
+                    ),
                   ],
-                ),
-              ),
-            ))
-      ],
+                )
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }
