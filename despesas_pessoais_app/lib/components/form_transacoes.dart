@@ -5,6 +5,9 @@ class FormTransacoes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController cTitulo = TextEditingController();
+    final TextEditingController cValor = TextEditingController();
+
     return Card(
       elevation: 5,
       child: Padding(
@@ -12,18 +15,23 @@ class FormTransacoes extends StatelessWidget {
         child: Column(
           // ignore: prefer_const_literals_to_create_immutables
           children: [
-            const TextField(
-              decoration: InputDecoration(labelText: 'Título'),
+            TextField(
+              controller: cTitulo,
+              decoration: const InputDecoration(labelText: 'Título'),
             ),
-            const TextField(
-              decoration: InputDecoration(labelText: 'Valor'),
+            TextField(
+              controller: cValor,
+              decoration: const InputDecoration(labelText: 'Valor (R\$)'),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 FlatButton(
                     textColor: Colors.purple,
-                    onPressed: () {},
+                    onPressed: () {
+                      // ignore: avoid_print
+                      print(cTitulo.text);
+                    },
                     child: const Text('Nova Transação')),
               ],
             )

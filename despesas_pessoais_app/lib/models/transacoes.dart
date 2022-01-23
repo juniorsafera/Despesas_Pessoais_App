@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-
 class ModeloTransacoes {
   final String id;
   final String titulo;
