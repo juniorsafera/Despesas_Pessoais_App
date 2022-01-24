@@ -2,19 +2,24 @@ import 'package:despesas_pessoais_app/models/transacoes.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class ListaTransacoes extends StatelessWidget {
+class ListaTransacoes extends StatefulWidget {
   final List<ModeloTransacoes> transacoes;
   const ListaTransacoes({Key? key, required this.transacoes}) : super(key: key);
 
   @override
+  State<ListaTransacoes> createState() => _ListaTransacoesState();
+}
+
+class _ListaTransacoesState extends State<ListaTransacoes> {
+  @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.amber[100],
+      //color: Colors.amber[100],
       height: 300,
       child: ListView.builder(
-        itemCount: transacoes.length,
+        itemCount: widget.transacoes.length,
         itemBuilder: (context, index) {
-          final transacao = transacoes[index];
+          final transacao = widget.transacoes[index];
           return Card(
             elevation: 5,
             child: Row(

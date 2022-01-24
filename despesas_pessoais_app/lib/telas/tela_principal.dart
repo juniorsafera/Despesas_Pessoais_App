@@ -60,6 +60,8 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
     setState(() {
       _transacoes.add(novaTransacao);
     });
+    // FECHAR FORMULARIO DE TRANSAÇÕES
+    Navigator.of(context).pop();
   }
 
   @override

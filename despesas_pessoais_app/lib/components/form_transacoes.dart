@@ -27,8 +27,8 @@ class _FormTransacoesState extends State<FormTransacoes> {
       widget.onSubmit(titulo, valor);
     }
 
+    // ignore: avoid_unnecessary_containers
     return Container(
-      height: 100,
       child: Card(
         elevation: 5,
         child: Padding(
@@ -39,13 +39,15 @@ class _FormTransacoesState extends State<FormTransacoes> {
               TextField(
                 controller: cTitulo,
                 onSubmitted: (_) => _submitForm(),
+                keyboardType: TextInputType.text,
                 decoration: const InputDecoration(labelText: 'Título'),
               ),
               TextField(
                 controller: cValor,
                 onSubmitted: (_) => _submitForm(),
                 keyboardType:
-                    const TextInputType.numberWithOptions(decimal: true),
+                    // const TextInputType.numberWithOptions(decimal: true),
+                    TextInputType.text,
                 decoration: const InputDecoration(labelText: 'Valor (R\$)'),
               ),
               Row(
