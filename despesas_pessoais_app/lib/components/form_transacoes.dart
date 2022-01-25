@@ -33,35 +33,48 @@ class _FormTransacoesState extends State<FormTransacoes> {
         elevation: 5,
         child: Padding(
           padding: const EdgeInsets.all(10),
-          child: InkWell(
-            child: Column(
-              // ignore: prefer_const_literals_to_create_immutables
-              children: [
-                TextField(
-                  controller: cTitulo,
-                  onSubmitted: (_) => _submitForm(),
-                  keyboardType: TextInputType.text,
-                  decoration: const InputDecoration(labelText: 'Título'),
+          child: Column(
+            // ignore: prefer_const_literals_to_create_immutables
+            children: [
+              /*
+              TextFormField(
+                controller: cTitulo,
+                //onSubmitted: (_) => _submitForm(),
+                keyboardType: TextInputType.text,
+                decoration: const InputDecoration(labelText: 'Título'),
+              ),
+              */
+
+              TextFormField(
+                decoration: const InputDecoration(
+                  hintText: 'Digite o Título',
                 ),
-                TextField(
-                  controller: cValor,
-                  onSubmitted: (_) => _submitForm(),
-                  keyboardType:
-                      // const TextInputType.numberWithOptions(decimal: true),
-                      TextInputType.text,
-                  decoration: const InputDecoration(labelText: 'Valor (R\$)'),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    FlatButton(
-                        textColor: Colors.purple,
-                        onPressed: _submitForm,
-                        child: const Text('Nova Transação')),
-                  ],
-                )
-              ],
-            ),
+                validator: (String? value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter some text';
+                  }
+                  return null;
+                },
+                //controller: cTitulo,
+              ),
+              TextFormField(
+                controller: cValor,
+                onFieldSubmitted: (_) => _submitForm(),
+                keyboardType:
+                    // const TextInputType.numberWithOptions(decimal: true),
+                    TextInputType.number,
+                decoration: const InputDecoration(labelText: 'Valor (R\$)'),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  FlatButton(
+                      textColor: Colors.purple,
+                      onPressed: _submitForm,
+                      child: const Text('Nova Transação')),
+                ],
+              )
+            ],
           ),
         ),
       ),
