@@ -1,7 +1,7 @@
 class ModeloTransacoes {
   final String id;
   final String titulo;
-  final String valor;
+  final double valor;
   final DateTime data;
 
   ModeloTransacoes({

@@ -21,31 +21,31 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
     ModeloTransacoes(
       id: 't1',
       titulo: 'novo tenis',
-      valor: '90.50',
+      valor: 90.50,
       data: DateTime.now(),
     ),
     ModeloTransacoes(
       id: 't2',
       titulo: 'nova camisa',
-      valor: '45.50',
+      valor: 45.50,
       data: DateTime.now(),
     ),
     ModeloTransacoes(
       id: 't3',
       titulo: 'nova capinha',
-      valor: '22.50',
+      valor: 22.50,
       data: DateTime.now(),
     ),
     ModeloTransacoes(
       id: 't4',
       titulo: 'Conta luz',
-      valor: '135.50',
+      valor: 135.50,
       data: DateTime.now(),
     ),
     ModeloTransacoes(
       id: 't5',
       titulo: 'Internet',
-      valor: '50.00',
+      valor: 50.00,
       data: DateTime.now(),
     ),
   ];
@@ -54,7 +54,7 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
     final novaTransacao = ModeloTransacoes(
         id: Random().nextDouble().toString(),
         titulo: titulo,
-        valor: valor.toString(),
+        valor: valor,
         data: DateTime.now());
 
     setState(() {

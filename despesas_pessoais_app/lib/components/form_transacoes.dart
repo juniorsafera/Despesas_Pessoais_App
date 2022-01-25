@@ -30,6 +30,8 @@ class _FormTransacoesState extends State<FormTransacoes> {
       }
 
       widget.onSubmit(titulo, valor);
+      cTitulo.clear();
+      cValor.clear();
     }
 
     // ignore: avoid_unnecessary_containers
