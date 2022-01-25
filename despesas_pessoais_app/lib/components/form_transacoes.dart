@@ -45,26 +45,23 @@ class _FormTransacoesState extends State<FormTransacoes> {
               ),
               */
 
-              TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Digite o Título',
-                ),
-                validator: (String? value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter some text';
-                  }
-                  return null;
-                },
-                //controller: cTitulo,
+              TextField(
+                 controller: cTitulo,                 
+                 onSubmitted:  null,
+                 decoration:  InputDecoration(labelText: 'Título'),
               ),
-              TextFormField(
-                controller: cValor,
-                onFieldSubmitted: (_) => _submitForm(),
-                keyboardType:
-                    // const TextInputType.numberWithOptions(decimal: true),
-                    TextInputType.number,
-                decoration: const InputDecoration(labelText: 'Valor (R\$)'),
+
+
+               TextField(
+                 controller: cValor,
+                 onSubmitted: (_) => _submitForm(),
+                 decoration: const InputDecoration(labelText: 'Valor R\$'),
+                // keyboardType: ,
               ),
+               
+               
+
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
