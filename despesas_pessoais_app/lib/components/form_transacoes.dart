@@ -1,20 +1,25 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class FormTransacoes extends StatefulWidget {
   final void Function(String, double) onSubmit;
   const FormTransacoes({Key? key, required this.onSubmit}) : super(key: key);
+  
 
   @override
   State<FormTransacoes> createState() => _FormTransacoesState();
 }
+ 
+
+ final TextEditingController cTitulo = TextEditingController();
+ final TextEditingController cValor = TextEditingController();
 
 class _FormTransacoesState extends State<FormTransacoes> {
   @override
   Widget build(BuildContext context) {
-    final TextEditingController cTitulo = TextEditingController();
-    final TextEditingController cValor = TextEditingController();
+   
 
     _submitForm() {
       final titulo = cTitulo.text;
@@ -36,19 +41,11 @@ class _FormTransacoesState extends State<FormTransacoes> {
           child: Column(
             // ignore: prefer_const_literals_to_create_immutables
             children: [
-              /*
-              TextFormField(
-                controller: cTitulo,
-                //onSubmitted: (_) => _submitForm(),
-                keyboardType: TextInputType.text,
-                decoration: const InputDecoration(labelText: 'Título'),
-              ),
-              */
+               
 
               TextField(
-                 controller: cTitulo,                 
-                 onSubmitted:  null,
-                 decoration:  InputDecoration(labelText: 'Título'),
+                 controller: cTitulo,                                  
+                 decoration: const InputDecoration(labelText: 'Título'),
               ),
 
 
@@ -56,7 +53,8 @@ class _FormTransacoesState extends State<FormTransacoes> {
                  controller: cValor,
                  onSubmitted: (_) => _submitForm(),
                  decoration: const InputDecoration(labelText: 'Valor R\$'),
-                // keyboardType: ,
+                 keyboardType: TextInputType.number,
+                 
               ),
                
                
