@@ -13,6 +13,7 @@ class ListaTransacoes extends StatefulWidget {
 class _ListaTransacoesState extends State<ListaTransacoes> {
   @override
   Widget build(BuildContext context) {
+    // ignore: sized_box_for_whitespace
     return Container(
       //color: Colors.amber[100],
       height: 300,
@@ -21,39 +22,22 @@ class _ListaTransacoesState extends State<ListaTransacoes> {
         itemBuilder: (context, index) {
           final transacao = widget.transacoes[index];
           return Card(
+            margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
             elevation: 5,
-            child: Row(
-              children: [
-                Container(
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                  child: Text(
-                    'R\$ ${transacao.valor}',
-                    style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.purple),
-                  ),
+            child: ListTile(
+              leading: CircleAvatar(
+                radius: 30,
+                child: Padding(
+                  padding: const EdgeInsets.all(5),
+                  child: FittedBox(child: Text('R\$${transacao.valor}')),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      transacao.titulo,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      DateFormat('d MMM y').format(transacao.data),
-                      style: const TextStyle(
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ],
-                )
-              ],
+              ),
+              title: Text(
+                transacao.titulo,
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              subtitle: Text(DateFormat('d MMM y').format(transacao.data)),
             ),
           );
         },

@@ -1,26 +1,21 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class FormTransacoes extends StatefulWidget {
   final void Function(String, double) onSubmit;
   const FormTransacoes({Key? key, required this.onSubmit}) : super(key: key);
-  
 
   @override
   State<FormTransacoes> createState() => _FormTransacoesState();
 }
- 
 
- final TextEditingController cTitulo = TextEditingController();
- final TextEditingController cValor = TextEditingController();
+final TextEditingController cTitulo = TextEditingController();
+final TextEditingController cValor = TextEditingController();
 
 class _FormTransacoesState extends State<FormTransacoes> {
   @override
   Widget build(BuildContext context) {
-   
-
     _submitForm() {
       final titulo = cTitulo.text;
       final valor = double.tryParse(cValor.text) ?? 0.00;
@@ -43,25 +38,20 @@ class _FormTransacoesState extends State<FormTransacoes> {
           child: Column(
             // ignore: prefer_const_literals_to_create_immutables
             children: [
-               
-
               TextField(
-                 controller: cTitulo,                                  
-                 decoration: const InputDecoration(labelText: 'Título'),
+                controller: cTitulo,
+                onSubmitted: (_) => _submitForm(),
+                keyboardType: TextInputType.text,
+                decoration: const InputDecoration(labelText: 'Título'),
               ),
-
-
-               TextField(
-                 controller: cValor,
-                 onSubmitted: (_) => _submitForm(),
-                 decoration: const InputDecoration(labelText: 'Valor R\$'),
-                 keyboardType: TextInputType.number,
-                 
+              TextField(
+                controller: cValor,
+                onSubmitted: (_) => _submitForm(),
+                keyboardType:
+                    // const TextInputType.numberWithOptions(decimal: true),
+                    TextInputType.number,
+                decoration: const InputDecoration(labelText: 'Valor (R\$)'),
               ),
-               
-               
-
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
