@@ -50,8 +50,10 @@ class Grafico extends StatelessWidget {
               child: BarraGrafico(
                   labelDia: tr['dia'].toString(),
                   valor: double.parse(tr['valor'].toString()),
-                  porcentagem:
-                      double.parse(tr['valor'].toString()) / _valorTotalSemana),
+                  porcentagem: _valorTotalSemana == 0
+                      ? 0
+                      : double.parse(tr['valor'].toString()) /
+                          _valorTotalSemana),
             );
           }).toList(),
         ),
