@@ -74,6 +74,7 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
 
   @override
   Widget build(BuildContext context) {
+    
     _abrirFormularioTransacoes() {
       showModalBottomSheet(
           context: context,

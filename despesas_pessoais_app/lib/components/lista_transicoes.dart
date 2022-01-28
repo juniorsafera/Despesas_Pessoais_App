@@ -16,7 +16,9 @@ class _ListaTransacoesState extends State<ListaTransacoes> {
     // ignore: sized_box_for_whitespace
     return Container(
       //color: Colors.amber[100],
-      height: 300,
+      height: MediaQuery.of(context).size.height * 0.7,
+      //height: 300,
+
       child: ListView.builder(
         itemCount: widget.transacoes.length,
         itemBuilder: (context, index) {
@@ -25,11 +27,20 @@ class _ListaTransacoesState extends State<ListaTransacoes> {
             margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
             elevation: 5,
             child: ListTile(
-              leading: CircleAvatar(
-                radius: 30,
+              leading: Container(
+                decoration:
+                    BoxDecoration(border: Border.all(color: Colors.red)),
                 child: Padding(
                   padding: const EdgeInsets.all(5),
-                  child: FittedBox(child: Text('R\$${transacao.valor}')),
+                  child: FittedBox(
+                      child: Text(
+                    'R\$${transacao.valor}',
+                    // ignore: prefer_const_constructors
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 16,
+                    ),
+                  )),
                 ),
               ),
               title: Text(

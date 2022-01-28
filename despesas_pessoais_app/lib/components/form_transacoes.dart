@@ -1,6 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class FormTransacoes extends StatefulWidget {
   final void Function(String, double) onSubmit;
@@ -12,6 +13,7 @@ class FormTransacoes extends StatefulWidget {
 
 final TextEditingController cTitulo = TextEditingController();
 final TextEditingController cValor = TextEditingController();
+DateTime? _dataSelecionada;
 
 class _FormTransacoesState extends State<FormTransacoes> {
   @override
@@ -27,6 +29,22 @@ class _FormTransacoesState extends State<FormTransacoes> {
       widget.onSubmit(titulo, valor);
       cTitulo.clear();
       cValor.clear();
+    }
+
+    _abrirCalendario() {
+      showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(2022),
+        lastDate: DateTime.now(),
+      ).then((value) {
+        if (value == null) {
+          return;
+        }
+        setState(() {
+          _dataSelecionada = value;
+        });
+      });
     }
 
     // ignore: avoid_unnecessary_containers
@@ -52,13 +70,45 @@ class _FormTransacoesState extends State<FormTransacoes> {
                     TextInputType.number,
                 decoration: const InputDecoration(labelText: 'Valor (R\$)'),
               ),
+              // ignore: sized_box_for_whitespace
+              Container(
+                height: 70,
+                child: Row(
+                  children: [
+                    // ignore: prefer_const_constructors
+                    Expanded(
+                      child: Text(_dataSelecionada == null
+                          ? "Nenhuma data selecionada!"
+                          : "Data selecionada: ${DateFormat('dd/MM/y').format(_dataSelecionada!)}"),
+                    ),
+                    // ignore: prefer_const_constructors
+                    FlatButton(
+                        onPressed: _abrirCalendario,
+                        // ignore: prefer_const_constructors
+                        child: Text(
+                          "Selecionar Data",
+                          // ignore: prefer_const_constructors
+                          style: TextStyle(
+                            color: Colors.purple,
+                          ),
+                        ))
+                  ],
+                ),
+              ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  FlatButton(
-                      textColor: Colors.purple,
-                      onPressed: _submitForm,
-                      child: const Text('Nova Transação')),
+                  RaisedButton(
+                    textColor: Colors.white,
+                    color: Colors.purple,
+                    onPressed: _submitForm,
+                    child: const Text(
+                      'Nova Transação',
+                      style: TextStyle(
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
                 ],
               )
             ],
