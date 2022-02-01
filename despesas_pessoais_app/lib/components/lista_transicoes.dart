@@ -4,7 +4,8 @@ import 'package:intl/intl.dart';
 
 class ListaTransacoes extends StatefulWidget {
   final List<ModeloTransacoes> transacoes;
-  const ListaTransacoes({Key? key, required this.transacoes}) : super(key: key);
+  final void  Function (String) removerTransacao;
+  const ListaTransacoes({Key? key, required this.transacoes, required this.removerTransacao}) : super(key: key);
 
   @override
   State<ListaTransacoes> createState() => _ListaTransacoesState();
@@ -47,7 +48,7 @@ class _ListaTransacoesState extends State<ListaTransacoes> {
               ),
               subtitle: Text(DateFormat('d MMM y').format(transacao.data)),
               trailing: IconButton(
-                  onPressed: () {},
+                  onPressed: () =>  widget.removerTransacao(transacao.id),
                   icon: const Icon(
                     Icons.delete,
                     color: Colors.red,

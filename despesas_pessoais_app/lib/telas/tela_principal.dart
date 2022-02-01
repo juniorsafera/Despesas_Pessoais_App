@@ -18,16 +18,7 @@ class TelaPrincipal extends StatefulWidget {
 }
 
 class _TelaPrincipalState extends State<TelaPrincipal> {
-  
-  
-  final _transacoes = [
-    ModeloTransacoes(
-      id: 't1',
-      titulo: 'novo tenis',
-      valor: 10,
-      data: DateTime.now().subtract(const Duration(days: 3)),
-    ),   
-  ];
+  final List<ModeloTransacoes> _transacoes = [];
 
   List<ModeloTransacoes> get _transacoesRecentes {
     return _transacoes
@@ -48,6 +39,13 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
     });
     // FECHAR FORMULARIO DE TRANSAÇÕES
     Navigator.of(context).pop();
+  }
+
+  _removerTransacao(String id) {
+    setState(() {
+     _transacoes.removeWhere((element) => element.id == id);
+    });
+   
   }
 
   @override
@@ -73,11 +71,19 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
       ),
       body: SingleChildScrollView(
         child: _transacoesRecentes.isEmpty
-            ? const Text("Nenhuma Transação Cadastrada!")
+            ? Column(
+                children: [
+                  Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height,
+                      child: const Center(
+                          child: Text("Nenhuma Transação Cadastrada!")))
+                ],
+              )
             : Column(
                 children: [
                   Grafico(transacoesRecentes: _transacoesRecentes),
-                  ListaTransacoes(transacoes: _transacoes),
+                  ListaTransacoes(transacoes: _transacoes,   removerTransacao: _removerTransacao,),
                 ],
               ),
       ),
