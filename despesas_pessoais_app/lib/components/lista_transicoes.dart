@@ -49,6 +49,12 @@ class _ListaTransacoesState extends State<ListaTransacoes> {
                     const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               subtitle: Text(DateFormat('d MMM y').format(transacao.data)),
+              trailing: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.delete,
+                    color: Colors.red,
+                  )),
             ),
           );
         },
