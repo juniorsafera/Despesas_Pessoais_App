@@ -15,10 +15,7 @@ class _ListaTransacoesState extends State<ListaTransacoes> {
   Widget build(BuildContext context) {
     // ignore: sized_box_for_whitespace
     return Container(
-      //color: Colors.amber[100],
       height: MediaQuery.of(context).size.height * 0.7,
-      //height: 300,
-
       child: ListView.builder(
         itemCount: widget.transacoes.length,
         itemBuilder: (context, index) {
