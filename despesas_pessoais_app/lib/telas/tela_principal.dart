@@ -18,37 +18,15 @@ class TelaPrincipal extends StatefulWidget {
 }
 
 class _TelaPrincipalState extends State<TelaPrincipal> {
+  
+  
   final _transacoes = [
     ModeloTransacoes(
       id: 't1',
       titulo: 'novo tenis',
       valor: 10,
       data: DateTime.now().subtract(const Duration(days: 3)),
-    ),
-    ModeloTransacoes(
-      id: 't2',
-      titulo: 'nova camisa',
-      valor: 10,
-      data: DateTime.now().subtract(const Duration(days: 4)),
-    ),
-    ModeloTransacoes(
-      id: 't3',
-      titulo: 'nova capinha',
-      valor: 22.50,
-      data: DateTime.now(),
-    ),
-    ModeloTransacoes(
-      id: 't4',
-      titulo: 'Conta luz',
-      valor: 20,
-      data: DateTime.now(),
-    ),
-    ModeloTransacoes(
-      id: 't5',
-      titulo: 'Internet',
-      valor: 50.00,
-      data: DateTime.now(),
-    ),
+    ),   
   ];
 
   List<ModeloTransacoes> get _transacoesRecentes {
@@ -58,12 +36,12 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
         .toList();
   }
 
-  _adicionarTransacao(String titulo, double valor) {
+  _adicionarTransacao(String titulo, double valor, DateTime data) {
     final novaTransacao = ModeloTransacoes(
         id: Random().nextDouble().toString(),
         titulo: titulo,
         valor: valor,
-        data: DateTime.now());
+        data: data);
 
     setState(() {
       _transacoes.add(novaTransacao);
@@ -94,12 +72,14 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
         ],
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Grafico(transacoesRecentes: _transacoesRecentes),
-            ListaTransacoes(transacoes: _transacoes),
-          ],
-        ),
+        child: _transacoesRecentes.isEmpty
+            ? const Text("Nenhuma Transação Cadastrada!")
+            : Column(
+                children: [
+                  Grafico(transacoesRecentes: _transacoesRecentes),
+                  ListaTransacoes(transacoes: _transacoes),
+                ],
+              ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
